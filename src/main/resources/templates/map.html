@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Harita</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<style type="text/css">
+html {
+	height: 100%
+}
+
+body {
+	height: 100%;
+	margin: 0;
+	padding: 0
+}
+
+#map-canvas {
+	height: 80%
+}
+</style>
+<script
+	th:src="@{https://maps.googleapis.com/maps/api/js(key=${googleApiKey})}"
+	th:with="googleApiKey=AIzaSyCyy5DXzzvaVwCOgAAKZyWhMyTTjbFoV4w"
+	src="https://maps.googleapis.com/maps/api/js"></script>
+
+
+<script th:inline="javascript">
+	var map;
+	
+	function initialize() {
+		var center=new google.maps.LatLng([[${latitude}]], [[${longitude}]]);
+		var mapOptions = {
+			center : center,
+			zoom : 14,
+			mapTypeId: 'satellite'
+		};
+			 
+		
+		map = new google.maps.Map(document.getElementById("map-canvas"),
+				mapOptions);
+		var marker = new google.maps.Marker({
+            position: center,
+            title: [[${name}]],
+             map: map,
+            draggable: false
+            });
+		map.setTilt(45);
+	}
+	google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+</head>
+<body>
+	<form action="http://localhost:8080/ara" method="post">
+		Ara:<input type="text" name="locationName" id="locationName" /> <input
+			type="submit" />
+	</form>
+	<div th:id="map-canvas" />
+</body>
+</html>
