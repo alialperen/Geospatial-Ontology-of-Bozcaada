@@ -1,5 +1,8 @@
 # TERM Project
 ## The Project
+
+This term project aims to create a substructure and a view point for generating geospatial ontology of Turkey beginning with Bozcaada- an Aegean touristic island where is famous for its beaches, historical places and grapes- the only district in the country that has not any villages.
+
 	This project is a maven project. 
 	To get required libraries for the project please right click-Maven-Update Project...
 	Names of required libraries can be found in dependencies tags in pom.xml.
